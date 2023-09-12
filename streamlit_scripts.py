@@ -21,12 +21,12 @@ st.area_chart(
     y= total_chart_df_columns
 )
 
-
 day = my_katalk_df.year_month_day.unique()
+day_sorted = sorted(day, reverse = True)
 # 시작 날짜와 종료 날짜 설정
 start_date = st.selectbox(
     '어떤 날짜의 현황을 볼래?',
-    (day))
+    (day_sorted))
 start_date_obj = datetime.strptime(start_date, '%Y-%m-%d')
 new_date_obj = start_date_obj + timedelta(days=1)
 end_date = new_date_obj.strftime('%Y-%m-%d')
