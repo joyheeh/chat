@@ -6,8 +6,8 @@ from datetime import datetime, timedelta
 
 # from preprocessing_window import in_out_df, my_katalk_df
 # from preprocessing_mac import in_out_df, my_katalk_df
-in_out_df = pd.read_excel("preprocessed_data/" +  "in_out_2023-09-12-03-00-35.xlsx")
-my_katalk_df = pd.read_excel("preprocessed_data/" +  "kakao_msg_2023-09-12-03-00-35.xlsx")
+in_out_df = pd.read_csv("preprocessed_data/" +  "in_out_2023-09-12-03-00-35.csv")
+my_katalk_df = pd.read_csv("preprocessed_data/" +  "kakao_msg_2023-09-12-03-00-35.csv")
 
 st.text('전체 채팅 분포')
 total_groupby_df = my_katalk_df.groupby(['year_month_day', 'user_class'])['year_month_day'].size().reset_index(name='user_class_day_count')
