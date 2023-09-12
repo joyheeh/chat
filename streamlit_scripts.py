@@ -21,6 +21,18 @@ st.area_chart(
     y= total_chart_df_columns
 )
 
+st.text('요일 별 채팅 분포')
+weekday_groupby_df = my_katalk_df.groupby(['hour', 'weekday'])['hour'].size().reset_index(name='weekday_hour_count')
+weekday_pivot_df = weekday_groupby_df.pivot(index='hour',columns='weekday',values='weekday_hour_count').reset_index()
+weekday_chart_df = weekday_pivot_df.fillna(0)
+weekday_chart_df_columns = weekday_chart_df.columns.to_list()
+weekday_chart_df_columns.remove('hour')
+st.area_chart(
+        weekday_chart_df,
+        x='hour',
+        y= weekday_chart_df_columns)
+
+
 day = my_katalk_df.year_month_day.unique()
 day_sorted = sorted(day, reverse = True)
 # 시작 날짜와 종료 날짜 설정
