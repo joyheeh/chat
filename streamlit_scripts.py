@@ -52,6 +52,9 @@ my_katalk_df_today = filer_df_by_date(my_katalk_df, start_date, end_date)
 weekday_today = my_katalk_df_today.weekday.unique()
 
 st.header(f"{start_date} {weekday_today[0]}의 :blue[로마드] 오픈 채팅 현황")
+if st.button('로마드 :red[2주 챌린지] 현황 바로가기!(PC ver.'):
+    webbrowser.open_new_tab("https://roalnamchallenge1.streamlit.app")
+
 
 
 st.subheader('오늘 하루의 채팅 분포')
