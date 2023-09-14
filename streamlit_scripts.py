@@ -9,35 +9,13 @@ from datetime import datetime, timedelta
 in_out_df = pd.read_csv("preprocessed_data/" +  "in_out_2023-09-14-00-31-16.csv")
 my_katalk_df = pd.read_csv("preprocessed_data/" +  "kakao_msg_2023-09-14-00-31-16.csv")
 
-st.text('전체 채팅 분포')
-total_groupby_df = my_katalk_df.groupby(['year_month_day', 'user_class'])['year_month_day'].size().reset_index(name='user_class_day_count')
-total_pivot_df = total_groupby_df.pivot(index='year_month_day',columns='user_class',values='user_class_day_count').reset_index()
-total_chart_df = total_pivot_df.fillna(0)
-total_chart_df_columns = total_chart_df.columns.to_list()
-total_chart_df_columns.remove('year_month_day')
-st.area_chart(
-    total_chart_df,
-    x='year_month_day',
-    y= total_chart_df_columns
-)
-
-st.text('요일 별 채팅 분포')
-weekday_groupby_df = my_katalk_df.groupby(['hour', 'weekday'])['hour'].size().reset_index(name='weekday_hour_count')
-weekday_pivot_df = weekday_groupby_df.pivot(index='hour',columns='weekday',values='weekday_hour_count').reset_index()
-weekday_chart_df = weekday_pivot_df.fillna(0)
-weekday_chart_df_columns = weekday_chart_df.columns.to_list()
-weekday_chart_df_columns.remove('hour')
-st.area_chart(
-        weekday_chart_df,
-        x='hour',
-        y= weekday_chart_df_columns)
-
+st.info('로마드 :red[2주 챌린지] 현황 보드 확인해보세요! https://roalnamchallenge1.streamlit.app', icon="📢")
 
 day = my_katalk_df.year_month_day.unique()
 day_sorted = sorted(day, reverse = True)
 # 시작 날짜와 종료 날짜 설정
 start_date = st.selectbox(
-    '어떤 날짜의 현황을 볼래?',
+    '📅 어떤 날짜의 현황을 볼래?',
     (day_sorted))
 start_date_obj = datetime.strptime(start_date, '%Y-%m-%d')
 new_date_obj = start_date_obj + timedelta(days=1)
@@ -87,6 +65,31 @@ st.dataframe(in_out_df_today[in_out_df_today.in_out == 'IN'][['date_time', 'user
 
 st.subheader('오늘의 탈퇴자💧')
 st.dataframe(in_out_df_today[in_out_df_today.in_out == 'OUT'][['date_time', 'user_name', 'user_class', 'in_out']])
+
+st.text('전체 채팅 분포')
+total_groupby_df = my_katalk_df.groupby(['year_month_day', 'user_class'])['year_month_day'].size().reset_index(name='user_class_day_count')
+total_pivot_df = total_groupby_df.pivot(index='year_month_day',columns='user_class',values='user_class_day_count').reset_index()
+total_chart_df = total_pivot_df.fillna(0)
+total_chart_df_columns = total_chart_df.columns.to_list()
+total_chart_df_columns.remove('year_month_day')
+st.area_chart(
+    total_chart_df,
+    x='year_month_day',
+    y= total_chart_df_columns
+)
+
+st.text('요일 별 채팅 분포')
+weekday_groupby_df = my_katalk_df.groupby(['hour', 'weekday'])['hour'].size().reset_index(name='weekday_hour_count')
+weekday_pivot_df = weekday_groupby_df.pivot(index='hour',columns='weekday',values='weekday_hour_count').reset_index()
+weekday_chart_df = weekday_pivot_df.fillna(0)
+weekday_chart_df_columns = weekday_chart_df.columns.to_list()
+weekday_chart_df_columns.remove('hour')
+st.area_chart(
+        weekday_chart_df,
+        x='hour',
+        y= weekday_chart_df_columns)
+
+
 
 
 st.text('이름 재설정 안내가 필요해요!')
