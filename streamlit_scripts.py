@@ -3,6 +3,7 @@ import pandas as pd
 import numpy as np
 from datetime import datetime, timedelta
 import webbrowser
+from link_button import link_button
 
 in_out_df = pd.read_csv("preprocessed_data/" +  "in_out_2023-09-14-00-31-16.csv")
 my_katalk_df = pd.read_csv("preprocessed_data/" +  "kakao_msg_2023-09-14-00-31-16.csv")
@@ -51,6 +52,7 @@ weekday_today = my_katalk_df_today.weekday.unique()
 st.header(f"{start_date} {weekday_today[0]}의 :blue[로마드] 오픈 채팅 현황")
 if st.button('로마드 :red[2주 챌린지] 현황 바로가기!(PC ver.)'):
     webbrowser.open_new_tab("https://roalnamchallenge1.streamlit.app")
+link_button('로마드 :red[2주 챌린지] 현황 바로가기!(PC ver.)', 'https://roalnamchallenge1.streamlit.app')
 
 
 st.subheader('오늘 하루의 채팅 분포')
