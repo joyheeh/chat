@@ -3,7 +3,8 @@ import pandas as pd
 import numpy as np
 from datetime import datetime, timedelta
 import webbrowser
-from link_button import link_button
+from streamlit.components.v1 import html
+
 
 in_out_df = pd.read_csv("preprocessed_data/" +  "in_out_2023-09-14-00-31-16.csv")
 my_katalk_df = pd.read_csv("preprocessed_data/" +  "kakao_msg_2023-09-14-00-31-16.csv")
@@ -45,15 +46,20 @@ end_date = new_date_obj.strftime('%Y-%m-%d')
 def filer_df_by_date(df, start_date, end_date):
     return df[(df['date_time'] >= start_date) & (df['date_time'] <= end_date)]
 
+def open_page(url):
+    open_script= """
+        <script type="text/javascript">
+            window.open('%s', '_blank').focus();
+        </script>
+    """ % (url)
+    html(open_script)
+
 in_out_df_today = filer_df_by_date(in_out_df, start_date, end_date)
 my_katalk_df_today = filer_df_by_date(my_katalk_df, start_date, end_date)
 weekday_today = my_katalk_df_today.weekday.unique()
 
 st.header(f"{start_date} {weekday_today[0]}의 :blue[로마드] 오픈 채팅 현황")
-if st.button('로마드 :red[2주 챌린지] 현황 바로가기!(PC ver.)'):
-    webbrowser.open_new_tab("https://roalnamchallenge1.streamlit.app")
-link_button('로마드 :red[2주 챌린지] 현황 바로가기!(PC ver.)', 'https://roalnamchallenge1.streamlit.app')
-
+st.button('로마드 :red[2주 챌린지] 현황 바로가기!(PC ver.)', on_click=open_page('https://roalnamchallenge1.streamlit.app')):
 
 st.subheader('오늘 하루의 채팅 분포')
 groupby_df = my_katalk_df_today.groupby(['hour', 'user_class'])['hour'].size().reset_index(name='user_class_hour_count')
