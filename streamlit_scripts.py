@@ -2,10 +2,8 @@ import streamlit as st
 import pandas as pd 
 import numpy as np
 from datetime import datetime, timedelta
+import webbrowser
 
-
-# from preprocessing_window import in_out_df, my_katalk_df
-# from preprocessing_mac import in_out_df, my_katalk_df
 in_out_df = pd.read_csv("preprocessed_data/" +  "in_out_2023-09-14-00-31-16.csv")
 my_katalk_df = pd.read_csv("preprocessed_data/" +  "kakao_msg_2023-09-14-00-31-16.csv")
 
@@ -43,7 +41,6 @@ start_date_obj = datetime.strptime(start_date, '%Y-%m-%d')
 new_date_obj = start_date_obj + timedelta(days=1)
 end_date = new_date_obj.strftime('%Y-%m-%d')
 
-# 날짜 범위를 적용하여 데이터 프레임 필터링
 def filer_df_by_date(df, start_date, end_date):
     return df[(df['date_time'] >= start_date) & (df['date_time'] <= end_date)]
 
@@ -52,9 +49,8 @@ my_katalk_df_today = filer_df_by_date(my_katalk_df, start_date, end_date)
 weekday_today = my_katalk_df_today.weekday.unique()
 
 st.header(f"{start_date} {weekday_today[0]}의 :blue[로마드] 오픈 채팅 현황")
-if st.button('로마드 :red[2주 챌린지] 현황 바로가기!(PC ver.'):
+if st.button('로마드 :red[2주 챌린지] 현황 바로가기!(PC ver.)'):
     webbrowser.open_new_tab("https://roalnamchallenge1.streamlit.app")
-
 
 
 st.subheader('오늘 하루의 채팅 분포')
