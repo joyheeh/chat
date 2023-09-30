@@ -9,8 +9,6 @@ from datetime import datetime, timedelta
 in_out_df = pd.read_csv("preprocessed_data/" +  "in_out_2023-09-30-11-45-17.csv")
 my_katalk_df = pd.read_csv("preprocessed_data/" +  "kakao_msg_2023-09-30-11-45-17.csv")
 
-st.info('로마드 :red[2주 챌린지] 현황 보드 확인해보세요! https://roalnamchallenge1.streamlit.app', icon="📢")
-
 day = my_katalk_df.year_month_day.unique()
 day_sorted = sorted(day, reverse = True)
 # 시작 날짜와 종료 날짜 설정
@@ -92,3 +90,6 @@ st.area_chart(
         weekday_chart_df,
         x='hour',
         y= weekday_chart_df_columns)
+
+st.info('로마드 :red[2주 챌린지] 종료되었습니다. 현황 보드 히스토리가 궁금하다면? https://roalnamchallenge1.streamlit.app', icon="➤")
+
