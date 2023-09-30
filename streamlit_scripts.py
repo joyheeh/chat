@@ -91,5 +91,5 @@ st.area_chart(
         x='hour',
         y= weekday_chart_df_columns)
 
-st.info('로마드 :red[2주 챌린지] 종료되었습니다. 현황 보드 히스토리가 궁금하다면? https://roalnamchallenge1.streamlit.app', icon="📢")
+st.info('로마드 :red[2주 챌린지]가 종료되었습니다! 현황 보드 히스토리가 궁금하다면? https://roalnamchallenge1.streamlit.app', icon="📢")
 
