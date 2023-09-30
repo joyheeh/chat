@@ -6,8 +6,8 @@ from datetime import datetime, timedelta
 # from streamlit.components.v1 import html
 
 
-in_out_df = pd.read_csv("preprocessed_data/" +  "in_out_2023-09-27-11-05-43.csv")
-my_katalk_df = pd.read_csv("preprocessed_data/" +  "kakao_msg_2023-09-27-11-05-43.csv")
+in_out_df = pd.read_csv("preprocessed_data/" +  "in_out_2023-09-30-11-45-17.csv")
+my_katalk_df = pd.read_csv("preprocessed_data/" +  "kakao_msg_2023-09-30-11-45-17.csv")
 
 st.info('로마드 :red[2주 챌린지] 현황 보드 확인해보세요! https://roalnamchallenge1.streamlit.app', icon="📢")
 
