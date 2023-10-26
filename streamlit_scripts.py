@@ -6,8 +6,8 @@ from datetime import datetime, timedelta
 # from streamlit.components.v1 import html
 
 
-in_out_df = pd.read_csv("preprocessed_data/" +  "in_out_2023-10-13-17-17-39.csv")
-my_katalk_df = pd.read_csv("preprocessed_data/" +  "kakao_msg_2023-10-13-17-17-39.csv")
+in_out_df = pd.read_csv("preprocessed_data/" +  "in_out_2023-10-26-17-18-10.csv")
+my_katalk_df = pd.read_csv("preprocessed_data/" +  "kakao_msg_2023-10-26-17-18-10.csv")
 
 day = my_katalk_df.year_month_day.unique()
 day_sorted = sorted(day, reverse = True)
